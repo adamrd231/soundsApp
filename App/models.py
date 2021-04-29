@@ -27,9 +27,9 @@ class Sound(models.Model):
     duration = models.IntegerField()
     
     #Store audio files on amazon S3?
-    audio_file = models.FileField(blank=True, null=True)
+    audio_file = models.FileField(blank=False, null=False, default="")
     #Store images using amazon S3
-    sound_image = models.ImageField(upload_to='photos/', null=True, blank=True)
+    sound_image = models.ImageField(upload_to='photos/', null=False, blank=False, default="")
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 
