@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +120,36 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# Access ID
+# AKIATWEBTZ37NZUYMF34
+# Secret Key
+# 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
+
+AWS_STORAGE_BUCKET_NAME = 'rv-sounds'
+AWS_S3_REGION_NAME = 'us-west-1' 
+AWS_ACCESS_KEY_ID = 'AKIATWEBTZ37NZUYMF34'
+AWS_SECRET_ACCESS_KEY = '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'
+
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'storage_backends.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'storage_backends.MediaStorage'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

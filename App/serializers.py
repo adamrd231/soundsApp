@@ -5,7 +5,17 @@ from django.contrib.auth.models import User
 class SoundSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sound
-        fields = ['id', 'name', 'duration']
+        fields = [
+            'id',
+            'name',
+            'audio_file',
+            'sound_image',
+            'duration',
+            'category',
+            'location',
+            'category_name',
+            'location_name',
+        ]
 
 
 class LocationSerializer(serializers.ModelSerializer):
