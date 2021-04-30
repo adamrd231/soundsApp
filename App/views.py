@@ -4,11 +4,27 @@ from rest_framework.response import Response;
 
 from .serializers import SoundSerializer, LocationSerializer, CategorySerializer;
 from .models import Sound, Category, Location
+from django_filters import rest_framework as filters
 
 # Create your views here.
+
 class SoundViewSet(viewsets.ModelViewSet):
     queryset = Sound.objects.all()
     serializer_class = SoundSerializer
+
+    def get_queryset(self):
+        category = self.request.query_params.get('category')
+        location = self.request.query_params.get('location')
+
+        if not category and not location:
+            return Sound.objects.all()
+        elif not category:
+            return Sound.objects.filter(location=location)
+        elif not location:
+            return Sound.objects.filter(category=category)
+        else:
+            return Sound.objects.filter(category=category, location=location)
+    
 
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
