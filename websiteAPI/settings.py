@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-uq9a0-&vwke=mcg@=5hxnf!*xviz%)$kvl_f$cd!_319-*0lcu'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -129,11 +133,11 @@ USE_TZ = True
 # AKIATWEBTZ37NZUYMF34
 # Secret Key
 # 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
-
-AWS_STORAGE_BUCKET_NAME = 'rv-sounds'
-AWS_S3_REGION_NAME = 'us-west-1' 
-AWS_ACCESS_KEY_ID = 'AKIATWEBTZ37NZUYMF34'
-AWS_SECRET_ACCESS_KEY = '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'
+env('SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 
 # Tell django-storages the domain to use to refer to static files.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
