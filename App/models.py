@@ -25,6 +25,8 @@ class Location(models.Model):
 class Sound(models.Model):
     name = models.TextField()
     duration = models.IntegerField()
+
+    free_song = models.BooleanField(default=False)
     
     #Store audio files on amazon S3?
     audio_file = models.FileField(blank=False, null=False, default="")
