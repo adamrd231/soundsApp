@@ -15,6 +15,7 @@ class SoundSerializer(serializers.ModelSerializer):
             'location',
             'category_name',
             'location_name',
+            'free_song',
         ]
 
 
