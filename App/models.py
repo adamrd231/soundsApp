@@ -1,8 +1,8 @@
 
-
-
 from django.db import models
 
+
+# Category to setup
 class Category(models.Model):
     title = models.TextField()
 
