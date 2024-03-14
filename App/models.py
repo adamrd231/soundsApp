@@ -1,7 +1,6 @@
 
 from django.db import models
 
-
 # Category to setup
 class Category(models.Model):
     title = models.TextField()
@@ -24,8 +23,8 @@ class Location(models.Model):
 # Create your models here.
 class Sound(models.Model):
     name = models.TextField()
+    description = models.TextField()
     duration = models.IntegerField()
-
     free_song = models.BooleanField(default=False)
     
     #Store audio files on amazon S3?

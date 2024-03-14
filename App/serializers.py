@@ -8,6 +8,7 @@ class SoundSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'description',
             'audio_file',
             'sound_image',
             'duration',
