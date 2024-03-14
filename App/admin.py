@@ -7,3 +7,5 @@ admin.site.register(Category)
 admin.site.register(Location)
 admin.site.register(Rating)
 admin.site.register(ArtistInfo)
+
+#This is a new comment
