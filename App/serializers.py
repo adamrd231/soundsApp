@@ -26,7 +26,6 @@ class RatingSerializer(serializers.ModelSerializer):
         model = Rating
         fields = ['id', 'user', 'sound', 'rating']
 
-
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
