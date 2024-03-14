@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 # Category to setup
 class Category(models.Model):
@@ -52,7 +53,7 @@ class Sound(models.Model):
         return str(self.location)
     
     def average_rating(self) -> float:
-        return Rating.objects.filter(Sound=self).aggregate(Avg("rating"))["rating__avg"] or 0
+        return Rating.objects.filter(sound=self).aggregate(Avg("rating"))["rating__avg"] or 0
 
     def __str__(self):
         return self.name

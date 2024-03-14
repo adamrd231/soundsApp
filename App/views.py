@@ -2,8 +2,8 @@ from django.shortcuts import render;
 from rest_framework import viewsets;
 from rest_framework.response import Response;
 
-from .serializers import SoundSerializer, LocationSerializer, CategorySerializer;
-from .models import Sound, Category, Location
+from .serializers import SoundSerializer, LocationSerializer, CategorySerializer, RatingSerializer;
+from .models import Sound, Category, Location, Rating
 from django_filters import rest_framework as filters
 
 # Create your views here.
@@ -34,3 +34,7 @@ class LocationViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer
