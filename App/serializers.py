@@ -1,5 +1,5 @@
 from rest_framework import serializers;
-from .models import Sound, Location, Category, Rating
+from .models import Sound, Location, Category, Rating, ArtistInfo
 from django.contrib.auth.models import User
 
 class SoundSerializer(serializers.ModelSerializer):
@@ -36,3 +36,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'title']
 
+class ArtistInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ArtistInfo
+        fields = ['id', 'name']

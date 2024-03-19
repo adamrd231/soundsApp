@@ -1,8 +1,8 @@
 from django.shortcuts import render;
 from rest_framework import viewsets;
 from rest_framework.response import Response;
-from .serializers import SoundSerializer, LocationSerializer, CategorySerializer, RatingSerializer;
-from .models import Sound, Category, Location, Rating
+from .serializers import SoundSerializer, LocationSerializer, CategorySerializer, RatingSerializer, ArtistInfoSerializer;
+from .models import Sound, Category, Location, Rating, ArtistInfo;
 from django_filters import rest_framework as filters
 from rest_framework.decorators import api_view
 
@@ -33,6 +33,9 @@ class SoundViewSet(viewsets.ModelViewSet):
         else:
             return Sound.objects.filter(category=category, name__contains=name)
     
+class ArtistInfoViewSet(viewsets.ModelViewSet):
+    queryset = ArtistInfo.objects.all()
+    serializer_class = ArtistInfoSerializer
 
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
