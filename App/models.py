@@ -62,7 +62,6 @@ class Sound(models.Model):
 
 
 class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     sound = models.ForeignKey(Sound, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
 

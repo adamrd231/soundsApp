@@ -24,7 +24,7 @@ class SoundSerializer(serializers.ModelSerializer):
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ['id', 'user', 'sound', 'rating']
+        fields = ['id', 'sound', 'rating']
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:

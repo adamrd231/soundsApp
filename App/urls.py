@@ -12,7 +12,6 @@ router.register('category', CategoryViewSet)
 router.register('ratings', RatingViewSet)
 router.register('artists', ArtistInfoViewSet)
 
-
 urlpatterns = [
     path('', include(router.urls)),
     path('post_rating/', views.post_rating, name='post_rating'),

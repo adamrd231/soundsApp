@@ -21,7 +21,6 @@ class SoundViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         category = self.request.query_params.get('category')
-        location = self.request.query_params.get('location')
         name = self.request.query_params.get('name')
 
         if not category and not name:
