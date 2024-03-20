@@ -12,9 +12,21 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'title']
 
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = ['id', 'location']
+
+class RatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = ['id', 'sound', 'rating']
+
+
 class SoundSerializer(serializers.ModelSerializer):
     artist = ArtistInfoSerializer()
     category = CategorySerializer()
+    location = LocationSerializer()
 
     class Meta:
         model = Sound
@@ -28,20 +40,7 @@ class SoundSerializer(serializers.ModelSerializer):
             'duration',
             'category',
             'location',
-            'category_name',
-            'location_name',
             'average_rating',
             'free_song',
         ]
-
-class RatingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Rating
-        fields = ['id', 'sound', 'rating']
-
-class LocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Location
-        fields = ['id', 'location']
-
 

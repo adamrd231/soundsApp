@@ -35,21 +35,10 @@ class Sound(models.Model):
     artist = models.ForeignKey(ArtistInfo, on_delete=models.CASCADE, blank=True, null=True)
     duration = models.IntegerField()
     free_song = models.BooleanField(default=False)
-    
-    #Store audio files on amazon S3?
     audio_file = models.FileField(blank=False, null=False, default="")
-    #Store images using amazon S3
     sound_image = models.ImageField(upload_to='photos/', null=False, blank=False, default="")
-
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-
-    def category_name(self):
-        return str(self.category)
-
     location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True, null=True)
-
-    def location_name(self):
-        return str(self.location)
     
     def average_rating(self) -> float:
         return Rating.objects.filter(sound=self).aggregate(Avg("rating"))["rating__avg"] or 0
