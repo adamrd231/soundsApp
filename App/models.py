@@ -13,7 +13,7 @@ class Category(models.Model):
         verbose_name_plural = "Category"
 
 class Location(models.Model):
-    location = models.TextField()
+    title = models.TextField()
 
     def __str__(self):
         return self.location
@@ -39,6 +39,9 @@ class Sound(models.Model):
     sound_image = models.ImageField(upload_to='photos/', null=False, blank=False, default="")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True, null=True)
+
+    def rating_count(self) -> int:
+        return Rating.objects.filter(sound=self).count()
     
     def average_rating(self) -> float:
         return Rating.objects.filter(sound=self).aggregate(Avg("rating"))["rating__avg"] or 0

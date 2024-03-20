@@ -15,7 +15,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ['id', 'location']
+        fields = ['id', 'title']
 
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,9 +25,17 @@ class RatingSerializer(serializers.ModelSerializer):
 
 class SoundSerializer(serializers.ModelSerializer):
     artist = ArtistInfoSerializer()
-    category = CategorySerializer()
+    category = CategorySerializer() 
     location = LocationSerializer()
+    rating_count = serializers.SerializerMethodField()
+    average_rating = serializers.SerializerMethodField()
 
+    def get_rating_count(self, obj):
+        return obj.rating_count()
+
+    def get_average_rating(self, obj):
+        return obj.average_rating()
+    
     class Meta:
         model = Sound
         fields = [
@@ -40,7 +48,9 @@ class SoundSerializer(serializers.ModelSerializer):
             'duration',
             'category',
             'location',
+            'rating_count',
             'average_rating',
             'free_song',
         ]
+
 
