@@ -7,8 +7,15 @@ class ArtistInfoSerializer(serializers.ModelSerializer):
         model = ArtistInfo
         fields = ['id', 'name']
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'title']
+
 class SoundSerializer(serializers.ModelSerializer):
     artist = ArtistInfoSerializer()
+    category = CategorySerializer()
+
     class Meta:
         model = Sound
         fields = [
@@ -36,10 +43,5 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = ['id', 'location']
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'title']
 
 
